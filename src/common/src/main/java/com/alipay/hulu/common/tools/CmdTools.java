@@ -87,7 +87,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 命令行操作集合
+ * 命令行操作集合。 功能初步看完
  */
 public class CmdTools {
     private static String TAG = "CmdTools";
