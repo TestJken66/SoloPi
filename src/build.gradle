@@ -16,12 +16,25 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
-        maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url 'https://maven.aliyun.com/repository/central' }
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        mavenLocal()
+        mavenCentral()
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
+        // jcenter() { url "http://jcenter.bintray.com/" }
+        maven { url 'https://repo1.maven.org/maven2/' }
+        // central
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/central' }
+        // jcenter
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        // public
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
+        //google
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+        //gradle-plugin
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
+        //apache snapshots
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/apache-snapshots' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.0.2'
@@ -31,7 +44,9 @@ buildscript {
     ext {
         compileSdkVersion = 29
         buildToolsVersion = "29.0.2"
+        minSdkVersion = 17
         targetSdkVersion = 29
+
         appVersionCode = 35
         appVersionName = '0.12.0'
     }
@@ -39,13 +54,24 @@ buildscript {
 
 allprojects {
     repositories {
-        maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url 'https://maven.aliyun.com/repository/central' }
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        mavenLocal()
+        mavenCentral()
         google()
         jcenter()
-        mavenCentral()
         maven { url "https://jitpack.io" }
+        // jcenter() { url "http://jcenter.bintray.com/" }
+        maven { url 'https://repo1.maven.org/maven2/' }
+        // central
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/central' }
+        // jcenter
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        // public
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
+        //google
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+        //gradle-plugin
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
+        //apache snapshots
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/apache-snapshots' }
     }
 }

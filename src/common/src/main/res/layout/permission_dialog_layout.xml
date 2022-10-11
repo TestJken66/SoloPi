@@ -90,7 +90,6 @@
             android:layout_height="@dimen/permission_progress_size"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="@dimen/control_dp8"
-            style="@style/Widget.AppCompat.ProgressBar"
             android:indeterminateTint="#FF4081"
             android:visibility="visible"/>
         <TextView
@@ -121,7 +120,6 @@
             android:visibility="gone"
             android:gravity="center"
             android:paddingBottom="@dimen/control_dp8"
-            android:foreground="?attr/selectableItemBackground"
             android:layout_marginRight="@dimen/control_dp8">
             <TextView
                 android:layout_width="wrap_content"
@@ -139,7 +137,6 @@
             android:paddingTop="@dimen/control_dp8"
             android:gravity="center"
             android:paddingBottom="@dimen/control_dp8"
-            android:foreground="?attr/selectableItemBackground"
             android:layout_marginRight="@dimen/control_dp8">
             <TextView
                 android:layout_width="wrap_content"
@@ -156,8 +153,7 @@
             android:paddingRight="@dimen/control_dp16"
             android:paddingTop="@dimen/control_dp8"
             android:gravity="center"
-            android:paddingBottom="@dimen/control_dp8"
-            android:foreground="?attr/selectableItemBackground">
+            android:paddingBottom="@dimen/control_dp8">
             <TextView
                 android:layout_width="wrap_content"
                 android:textSize="@dimen/dialog_btn_text_size"

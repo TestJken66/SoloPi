@@ -1142,7 +1142,8 @@ public abstract class LauncherApplication extends Application {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.PermissionAppDialogTheme)
+//                AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.PermissionAppDialogTheme)
+                AlertDialog.Builder builder = new AlertDialog.Builder(context)
                         .setMessage(message)
                         .setPositiveButton(positiveText, new DialogInterface.OnClickListener() {
                             @Override

@@ -235,7 +235,8 @@ public class FileChooseDialogActivity extends Activity implements View.OnClickLi
         final EditText editText = new EditText(this);
         editText.setText(defaultFileName);
         // 显示Dialog
-        new AlertDialog.Builder(this, R.style.PermissionAppDialogTheme)
+//        new AlertDialog.Builder(this, R.style.PermissionAppDialogTheme)
+        new AlertDialog.Builder(this)
                 .setTitle(R.string.file_choose__create_folder)
                 .setView(editText)
                 .setPositiveButton(R.string.constant__confirm, new DialogInterface.OnClickListener() {

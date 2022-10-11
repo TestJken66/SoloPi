@@ -26,7 +26,6 @@
         android:layout_height="@dimen/control_dp48"
         app:tabGravity="fill"
         app:tabMaxWidth="0dp"
-        app:tabTextAppearance="@style/TabLayoutTextStyle"
         app:tabPaddingTop="@dimen/control_dp8"
         app:tabPaddingBottom="@dimen/control_dp8"
         app:tabPaddingStart="@dimen/control_dp16"

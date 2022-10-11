@@ -37,7 +37,6 @@
         <item name="alertDialogStyle">@style/defaultDialogTheme</item>
         <item name="dialogTheme">@style/defaultDialogTheme</item>
         <item name="buttonBarButtonStyle">@style/defaultBtnBarStyle</item>
-        <item name="android:windowTitleStyle">@style/windowTitleStyle</item>
         <item name="android:textAppearanceMedium">@style/defaultMediumTextAppearance</item>
         <item name="android:textAppearanceLarge">@style/defaultLargeTextAppearance</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
@@ -62,7 +61,6 @@
         <item name="windowMinWidthMajor" type="dimen">50%</item>
         <item name="windowMinWidthMinor" type="dimen">40%</item>
         <item name="buttonBarButtonStyle">@style/defaultBtnBarStyle</item>
-        <item name="android:windowTitleStyle">@style/windowTitleStyle</item>
         <item name="android:textAppearanceMedium">@style/defaultMediumTextAppearance</item>
         <item name="android:textAppearanceLarge">@style/defaultLargeTextAppearance</item>
 
@@ -139,7 +137,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowTitleStyle">@style/windowTitleStyle</item>
         <!--背景颜色及和透明程度-->
         <item name="android:windowBackground">@color/transparent</item>
         <!--是否去除标题 -->
