@@ -16,8 +16,10 @@
 package com.alipay.hulu.common.utils.patch;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.alipay.hulu.common.tools.AbstCmdLine;
+import com.alipay.hulu.common.utils.LogUtil;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
@@ -105,9 +107,8 @@ public abstract class PatchContext {
                     return (PatchContext) content;
                 }
             }
-        } catch (NoSuchMethodException e) {
-        } catch (IllegalAccessException e) {
-        } catch (InvocationTargetException e) {
+        } catch (Throwable e) {
+            LogUtil.e("PatchContext",Log.getStackTraceString(e));
         }
         return null;
     }

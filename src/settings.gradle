@@ -5,3 +5,5 @@ include ':mdlibrary'
 include ':common'
 include ':shared'
 include ':app'
+
+rootProject.name = "SoloPi"

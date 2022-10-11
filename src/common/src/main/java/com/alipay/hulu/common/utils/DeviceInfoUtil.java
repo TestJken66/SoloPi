@@ -176,6 +176,10 @@ public class DeviceInfoUtil {
         return ip;
     }
 
+    /**
+     * 获取ram信息
+     * @return
+     */
     public static int getTotalRAM(){
         String path = "/proc/meminfo";
         String firstLine = null;

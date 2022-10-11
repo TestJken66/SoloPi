@@ -27,7 +27,6 @@ import java.lang.reflect.Field;
 /**
  * Created by lezhou.wyl on 2018/1/11.
  */
-
 public class MiscUtil {
     private static final String TAG = "MiscUtil";
 

@@ -53,7 +53,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Created by cathor on 2017/12/12.
  */
-
 public class PermissionUtil {
     private static final String TAG = "PermissionUtil";
 

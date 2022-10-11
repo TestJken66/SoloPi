@@ -15,6 +15,8 @@
  */
 package com.alipay.hulu.common.utils;
 
+import android.util.Log;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -116,8 +118,8 @@ public class DecompressUtil {
                 LogUtil.d(TAG, "处理Entry=%s完毕", szName);
             }
 
-        } catch (IOException e) {
-            LogUtil.e(TAG, "Catch java.io.IOException: " + e.getMessage(), e);
+        } catch (Throwable e) {
+            LogUtil.e(TAG, Log.getStackTraceString(e));
         }
 
         return targetFolder;

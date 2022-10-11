@@ -17,21 +17,18 @@ package com.alipay.hulu.common.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.util.Pair;
 
 import com.alibaba.fastjson.JSON;
 import com.alipay.hulu.common.application.LauncherApplication;
 import com.alipay.hulu.common.constant.Constant;
-import com.alipay.hulu.common.service.SPService;
-import com.alipay.hulu.common.tools.BackgroundExecutor;
 import com.alipay.hulu.common.utils.patch.PatchClassLoader;
 import com.alipay.hulu.common.utils.patch.PatchLoadResult;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -147,7 +144,7 @@ public class ClassUtil {
      * @return
      */
     private static boolean filterClass(String className, List<String> filter) {
-        for (String accept: filter) {
+        for (String accept : filter) {
             if (StringUtil.contains(className, accept)) {
                 return true;
             }
@@ -178,14 +175,8 @@ public class ClassUtil {
                 constructor.setAccessible(true);
             }
             return constructor.newInstance(arguments);
-        } catch (InstantiationException e) {
-            LogUtil.e(TAG, "Catch java.lang.InstantiationException: " + e.getMessage(), e);
-        } catch (IllegalAccessException e) {
-            LogUtil.e(TAG, "Catch java.lang.IllegalAccessException: " + e.getMessage(), e);
-        } catch (InvocationTargetException e) {
-            LogUtil.e(TAG, "Catch java.lang.reflect.InvocationTargetException: " + e.getMessage(), e);
-        } catch (NoSuchMethodException e) {
-            LogUtil.e(TAG, "Catch java.lang.NoSuchMethodException: " + e.getMessage(), e);
+        } catch (Throwable e) {
+            LogUtil.e(TAG, Log.getStackTraceString(e));
         }
 
         return null;
@@ -261,7 +252,7 @@ public class ClassUtil {
             }
         }
 
-        for (Class clz: classes) {
+        for (Class clz : classes) {
             if (clz != null && StringUtil.equals(clz.getName(), name)) {
                 return clz;
             }
@@ -270,7 +261,7 @@ public class ClassUtil {
         try {
             return Class.forName(name);
         } catch (ClassNotFoundException e) {
-            LogUtil.e(TAG, "Fail to load class:" + name, e);
+            LogUtil.e(TAG, Log.getStackTraceString(e));
             return null;
         }
     }
@@ -420,7 +411,7 @@ public class ClassUtil {
         // 加载缓存patch版本信息
         String storedPatch = sp.getString(PATCH_INFO_RES, "[]");
         List<PatchVersionInfo> infos = JSON.parseArray(storedPatch, PatchVersionInfo.class);
-        for (PatchVersionInfo info: infos) {
+        for (PatchVersionInfo info : infos) {
             avaliablePatches.put(info.name, new Pair<>(info.version, info.url));
         }
 
@@ -491,12 +482,13 @@ public class ClassUtil {
     private static void initPatches(List<PatchLoadResult> patches) {
         Queue<PatchLoadResult> result = new LinkedList<>(patches);
         Set<String> names = new HashSet<>();
-        for (PatchLoadResult patch: patches) {
+        for (PatchLoadResult patch : patches) {
             names.add(patch.name);
         }
 
         //FIXME 9102年了还有goto
-        skip: while (!result.isEmpty()) {
+        skip:
+        while (!result.isEmpty()) {
             PatchLoadResult patch = result.poll();
             List<String> dependencies = patch.dependencies;
 
@@ -538,7 +530,7 @@ public class ClassUtil {
 
             // 添加依赖
             if (patch.dependencies != null) {
-                for (String name: patch.dependencies) {
+                for (String name : patch.dependencies) {
                     PatchLoadResult depend = mPatchInfo.get(name);
                     if (depend == null) {
                         LogUtil.e(TAG, "无法添加Patch，依赖%s不存在", name);
@@ -619,7 +611,7 @@ public class ClassUtil {
      */
     private static void savePatchInfoToSP() {
         List<PatchVersionInfo> patchVersionInfos = new ArrayList<>(avaliablePatches.size() + 1);
-        for (String key: avaliablePatches.keySet()) {
+        for (String key : avaliablePatches.keySet()) {
             Pair<Float, String> pair = avaliablePatches.get(key);
             patchVersionInfos.add(new PatchVersionInfo(key, pair.first, pair.second));
         }

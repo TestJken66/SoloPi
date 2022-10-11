@@ -238,7 +238,7 @@ public class CaseReplayUtil {
                 }
             });
 
-            dialog.setCanceledOnTouchOutside(false);                                   //点击外面区域不会让dialog消失
+            dialog.setCanceledOnTouchOutside(false); //点击外面区域不会让dialog消失
             dialog.setCancelable(false);
             dialog.show();
 
