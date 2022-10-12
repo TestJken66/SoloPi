@@ -47,9 +47,9 @@ buildscript {
         minSdkVersion = 17
         targetSdkVersion = 29
 
-
         appVersionCode = 39
         appVersionName = '0.10.20051801'
+
     }
 }
 
