@@ -443,7 +443,7 @@ public class DisplayProvider implements ExportService {
 
             // 一次调用时间
             long spendTime = System.currentTimeMillis() - startTime;
-            LogUtil.d(TAG, "调用【%s】耗时%dms", reference.getClass().getSimpleName(), spendTime);
+            LogUtil.v(TAG, "调用【%s】耗时%dms", reference.getClass().getSimpleName(), spendTime);
             if (spendTime > maxSpendTime) {
                 maxSpendTime = spendTime;
                 smallCount = 0;

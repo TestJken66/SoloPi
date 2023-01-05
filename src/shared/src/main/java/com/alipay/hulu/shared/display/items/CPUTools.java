@@ -502,6 +502,7 @@ public class CPUTools implements Displayable{
 		cpuInfos = load.split("\\s+");
 
 		try {
+			LogUtil.d(TAG, "-----sanbo------------%s-----", Arrays.asList(cpuInfos));
 			currentJiffies = Long.parseLong(cpuInfos[1]) + Long.parseLong(cpuInfos[2]) + Long.parseLong(cpuInfos[3])
 					+ Long.parseLong(cpuInfos[4]) + Long.parseLong(cpuInfos[5]) + Long.parseLong(cpuInfos[6])
 					+ Long.parseLong(cpuInfos[7]);
@@ -530,6 +531,12 @@ public class CPUTools implements Displayable{
             if (gapIdle < 0 || gapJiffies < 0) {
                 return -1f;
             }
+			LogUtil.d(TAG,
+					"----sanbo---------CPU占用率:" + (gapJiffies - gapIdle) / (float) gapJiffies
+							+"\r\ngapJiffies:"+gapJiffies
+							+"\r\ngapIdle:"+gapIdle
+							+"\r\ngapJiffies:"+gapJiffies
+			);
 
 			LogUtil.d(TAG, "CPU占用率:" + (gapJiffies - gapIdle) / (float) gapJiffies);
 			return 100 * (gapJiffies - gapIdle) / (float) gapJiffies;

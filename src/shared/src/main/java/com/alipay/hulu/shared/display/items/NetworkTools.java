@@ -269,7 +269,7 @@ public class NetworkTools implements Displayable{
                 cmd.append("/proc/").append(pid).append("/net/dev ");
 			}
 
-			LogUtil.d(TAG, "cmd: %s", cmd);
+			LogUtil.d(TAG, "----sanbo---------cmd: %s", cmd);
 			appLines = CmdTools.execAdbCmd(cmd.toString(), 0);
 			long time = System.currentTimeMillis();
 			LogUtil.d(TAG, "close reader, result: %s", appLines);

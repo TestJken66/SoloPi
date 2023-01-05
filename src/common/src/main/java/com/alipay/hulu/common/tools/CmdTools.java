@@ -562,6 +562,7 @@ public class CmdTools {
      * @return 命令行输出
      */
     public static String execAdbCmd(final String cmd, int wait) {
+        LogUtil.d(TAG, "----sanbo--------- execAdbCmd " + cmd);
         // 主线程的话走Callable
         if (Looper.myLooper() == Looper.getMainLooper()) {
             if (wait > 5000 || wait == 0) {
@@ -633,7 +634,7 @@ public class CmdTools {
                     sb.append(new String(bytes));
                 }
             }
-            logcatCmd(stream.getLocalId() + "@" + "shell:->" + sb.toString());
+//            logcatCmd(stream.getLocalId() + "@" + "shell:->" + sb.toString());
             streams.remove(stream);
             return sb.toString();
         } catch (IllegalStateException e) {

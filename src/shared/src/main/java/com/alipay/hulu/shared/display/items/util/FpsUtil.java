@@ -24,7 +24,6 @@ import com.alipay.hulu.common.injector.param.SubscribeParamEnum;
 import com.alipay.hulu.common.injector.param.Subscriber;
 import com.alipay.hulu.common.injector.provider.Param;
 import com.alipay.hulu.common.injector.provider.Provider;
-import com.alipay.hulu.common.service.SPService;
 import com.alipay.hulu.common.tools.CmdTools;
 import com.alipay.hulu.common.utils.LogUtil;
 import com.alipay.hulu.common.utils.StringUtil;
@@ -153,7 +152,7 @@ public class FpsUtil {
     /**
      * 非Root环境获取Fps，jank，maxJank（也支持root环境）
      * @param app 应用名称
-     * @return Fps,Jank,MaxJank,
+     * @return Fps, Jank, MaxJank,
      */
     private List<FpsDataWrapper> countUnrootFPS(String app, boolean requestPrevious) {
         Long startTime = System.currentTimeMillis();
@@ -274,7 +273,7 @@ public class FpsUtil {
                 if (pidStr.contains(":")) {
                     pidStr = pidStr.split("\\:")[0];
                 }
-                LogUtil.i(TAG, "Get pid info：" + pidStr) ;
+                LogUtil.i(TAG, "Get pid info：" + pidStr);
                 // 记录过滤PID
                 // 确定下pid
                 int pid = Integer.parseInt(pidStr);
@@ -553,11 +552,14 @@ public class FpsUtil {
             // 从最后一位向上计数，直到耗时满足满帧
             for (position = lastPos; position > -1 && startRenderTimes.get(position) > filter; position--) {
                 long jankTime = endRenderTimes.get(position) - startRenderTimes.get(position);
-                totalCount++;
-                int count = (int) Math.ceil(jankTime / FPS_PERIOD);
                 if (jankTime > maxJank) {
                     maxJank = jankTime;
                 }
+                totalCount++;
+                // 渲染时间--  系统应该渲染（帧周期）
+                //   16000<   16666D ---1 ok
+                //   22000 > 16666D  ---1.x__ceil--2 -- 延迟，延迟次数+1
+                int count = (int) Math.ceil(jankTime / FPS_PERIOD);
                 if (count > 1) {
                     jankCount++;
                 }
@@ -565,9 +567,24 @@ public class FpsUtil {
             }
 
             // 可能存在只有一部分数据的情况
-            int fps = jankVsyncCount < FRAME_PER_SECOND?  FRAME_PER_SECOND - jankVsyncCount + totalCount: totalCount;
+            int fps = jankVsyncCount < FRAME_PER_SECOND ? FRAME_PER_SECOND - jankVsyncCount + totalCount : totalCount;
 
-            return new FpsDataWrapper(processName, activity, fps, jankCount, (int) Math.ceil(maxJank / 1000F), jankCount / (float) totalCount * 100, startRenderTimes, endRenderTimes);
+            ////>帧率:%d/延迟数:%d/最长延迟:%dms/延迟占比:%.2f%%\n%s
+            //return StringUtil.getString(R.string.display_fps__current_info_activity,
+            //  dataWrapper.fps, dataWrapper.junkCount, dataWrapper.maxJunk,
+            //  dataWrapper.junkPercent, dataWrapper.activity.substring(dataWrapper.activity.indexOf('/') + 1));
+            // 帧率:%d --->fps
+            // 延迟数:%d ---> jankCount
+            // 最长延迟:%dms --->(int) Math.ceil(maxJank / 1000F)
+            // 延迟占比:%.2f%% ---> jankCount / (float) totalCount * 100
+            return new FpsDataWrapper(/*String proc*/processName
+                    , /*String activity*/activity
+                    , /*int fps*/fps
+                    , /*int junkCount*/jankCount
+                    , /*int maxJunk*/(int) Math.ceil(maxJank / 1000F)
+                    , /*float junkPercent*/jankCount / (float) totalCount * 100
+                    , /*List<Long> startRenderTime*/startRenderTimes
+                    ,/*List<Long> finishRenderTime) */ endRenderTimes);
         }
     }
 

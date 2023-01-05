@@ -155,6 +155,7 @@ public class FpsTools implements Displayable {
 
 		if (dataWrapper.fps > 0) {
 			if (displayExtra && !StringUtil.isEmpty(dataWrapper.activity)) {
+				//>帧率:%d/延迟数:%d/最长延迟:%dms/延迟占比:%.2f%%\n%s
 				return StringUtil.getString(R.string.display_fps__current_info_activity,
 						dataWrapper.fps, dataWrapper.junkCount, dataWrapper.maxJunk,
 						dataWrapper.junkPercent, dataWrapper.activity.substring(dataWrapper.activity.indexOf('/') + 1));
