@@ -20,7 +20,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.Rect;
-import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.WindowManager;
@@ -45,8 +44,8 @@ import com.alipay.hulu.shared.node.action.provider.ActionProvider;
 import com.alipay.hulu.shared.node.action.provider.ViewLoadCallback;
 import com.alipay.hulu.shared.node.tree.AbstractNodeTree;
 import com.alipay.hulu.shared.node.utils.AssetsManager;
-import com.alipay.hulu.tools.HighLightService;
 import com.alipay.hulu.shared.node.utils.BitmapUtil;
+import com.alipay.hulu.tools.HighLightService;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.File;
@@ -484,7 +483,7 @@ public class ImageCompareActionProvider implements ActionProvider {
             float widthRadio = targetWidth / query.getWidth();
             float heightRadio = targetHeight / query.getHeight();
 
-            LogUtil.d(TAG, "原尺寸: %s, 查找尺寸: %s" , query.getWidth() + "x" + query.getHeight(), targetWidth + "x" + targetHeight);
+            LogUtil.d(TAG, "原尺寸: %s, 查找尺寸: %s", query.getWidth() + "x" + query.getHeight(), targetWidth + "x" + targetHeight);
 
             // 差别过大，说明找错了，当做没找到
             if (widthRadio < 0.4 || widthRadio > 2 || heightRadio < 0.4 || heightRadio > 2) {
